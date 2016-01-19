@@ -4,16 +4,19 @@ Source: https://git.flightaware.com/
 
 Files: *
 Copyright: 2014 FlightAware LLC
+           Copyright 2015,2016 Ycarus <ycarus@zugaina.org>
 License: BSD-3-Clause
 
 Files: dump1090/*
 Copyright: Copyright 2012 Salvatore Sanfilippo <antirez@gmail.com>
            Copyright 2013,2014 Malcolm Robb <Support@ATTAvionics.com>
            Copyright 2014,2015 Oliver Jowett <oliver@mutability.co.uk>
+           Copyright 2015,2016 Ycarus <ycarus@zugaina.org>
 License: BSD-3-Clause and GPL-2+
 
 Files: mlat-client/*
 Copyright: Copyright 2015 oliver@mutability.co.uk
+           Copyright 2015,2016 Ycarus <ycarus@zugaina.org>
 Licence: GPL-3+
 
 Files: debian/*

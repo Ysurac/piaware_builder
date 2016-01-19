@@ -26,6 +26,7 @@ override_dh_strip:
 	# cxfreeze produces a launcher executable with a zipfile appended
 	# attempting to strip it will damage the zipfile
 	dh_strip -X debian/piaware/usr/lib/piaware/helpers/fa-mlat-client
+	dh_strip -X debian/piaware/usr/lib/piaware/helpers/fam-mlat-client
 
 check_versions:
 	debian/check_versions
@@ -35,11 +36,12 @@ configure_tcllauncher:
 	dh_auto_configure -D tcllauncher -- --with-tcl=/usr/lib/tcl8.5 
 
 build_dump1090:
-	make -C dump1090 DUMP1090_VERSION="piaware-$(CHANGELOG_VERSION)" faup1090
+	make -C dump1090 DUMP1090_VERSION="piaware-fam-$(CHANGELOG_VERSION)" faup1090 zfamup1090
 
 install_dump1090:
 	install -d $(CURDIR)/debian/piaware/usr/lib/piaware/helpers
 	install -t $(CURDIR)/debian/piaware/usr/lib/piaware/helpers dump1090/faup1090
+	install -t $(CURDIR)/debian/piaware/usr/lib/piaware/helpers dump1090/zfamup1090
 
 setup_venv:
 	virtualenv --python=$(PYTHON3) $(VENV) --never-download
@@ -56,6 +58,8 @@ build_mlat-client:
 install_mlat-client:
 	$(VENV)/bin/cxfreeze --target-dir=$(CURDIR)/debian/piaware/usr/lib/piaware/helpers --include-modules=imp $(VENV)/bin/fa-mlat-client
 	chmod +x $(CURDIR)/debian/piaware/usr/lib/piaware/helpers/fa-mlat-client
+	$(VENV)/bin/cxfreeze --target-dir=$(CURDIR)/debian/piaware/usr/lib/piaware/helpers --include-modules=imp $(VENV)/bin/fam-mlat-client
+	chmod +x $(CURDIR)/debian/piaware/usr/lib/piaware/helpers/fam-mlat-client
 
 clean_mlat-client:
 	cd mlat-client && $(PYTHON3) setup.py clean -a
